@@ -166,7 +166,7 @@ const Cart = () => {
                 maxLength={50}
                 autoFocus
                 value={name}
-                onChange={() => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
@@ -176,7 +176,7 @@ const Cart = () => {
                 autoFocus
                 maxLength={19}
                 value={cardno}
-                onChange={() => setCardno(e.target.value)}
+                onChange={(e) => setCardno(e.target.value)}
                   onInput={(e) => {
                     let value = e.target.value.replace(/\D/g, '').slice(0, 16); // Keep digits only
                     value = value.match(/.{1,4}/g)?.join(' ') ?? '';
@@ -233,7 +233,7 @@ const Cart = () => {
                   <h1 className='grid justify-self-start w-[30%]'>CVV:</h1>
                   <input type="password" placeholder='123' className='border-b-2 rounded-md text-gray-700 w-[30%] px-1 py-0.5' maxLength="3" 
                   value={cvv}
-                onChange={() => setCvv(e.target.value)}/>
+                onChange={(e) => setCvv(e.target.value)}/>
                 </div>
                 
               </div>
@@ -245,7 +245,7 @@ const Cart = () => {
                 maxLength={100}
                 autoFocus
                 value={address}
-                onChange={() => setAddress(e.target.value)}
+                onChange={(e) => setAddress(e.target.value)}
                 />
               
 
@@ -259,7 +259,7 @@ const Cart = () => {
                 maxLength={50}
                 autoFocus
                 value={upI}
-                onChange={() => setUpI(e.target.value)}
+                onChange={(e) => setUpI(e.target.value)}
                 />
               </div>
 
@@ -269,7 +269,7 @@ const Cart = () => {
                 maxLength={100}
                 autoFocus
                 value={address}
-                onChange={() => setAddress(e.target.value)}
+                onChange={(e) => setAddress(e.target.value)}
                 />
               
 
@@ -291,7 +291,7 @@ const Cart = () => {
                 maxLength={100}
                 autoFocus
                 value={address}
-                onChange={() => setAddress(e.target.value)}
+                onChange={(e) => setAddress(e.target.value)}
                 />
               
 
