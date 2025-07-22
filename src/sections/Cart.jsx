@@ -41,7 +41,7 @@ const Cart = () => {
   
   
   return (
-    <section className='w-full   padding-x'>
+    <section className='w-full pb-8 pt-5  padding-x'>
       <div className='flex xl:flex-row flex-col pt-17 gap-5 max-w-[1470px] mx-auto my-0'>
         <div className='flex flex-col flex-[1.5]'>
           <h1 className='font-bold text-3xl '>Shopping Cart</h1>
