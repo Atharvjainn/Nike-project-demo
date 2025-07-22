@@ -59,7 +59,13 @@ export const AuthProvider = ({children}) => {
             }
         } catch (error) {
             console.log(error);
-            alert('password should be at least of 8 characters..')
+             if (error?.message?.includes('Password')) {
+      alert('❗ Password must be at least 8 characters and not commonly used.');
+    } else if (error?.message?.includes('already exists')) {
+      alert('❗ This email is already registered.');
+    } else {
+      alert(`❗ ${error.message}`);
+    }
         }
         setLoading(false)
 
