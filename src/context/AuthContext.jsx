@@ -59,6 +59,7 @@ export const AuthProvider = ({children}) => {
             }
         } catch (error) {
             console.log(error);
+            alert('password should be at least of 8 characters..')
         }
         setLoading(false)
 
