@@ -8,6 +8,26 @@ import { useCart } from '../context/CartContext'
 const Cart = () => {
   const {numberofitems,totalprice} = useCart();
   const [formm,setFormm] = useState('card')
+  const [name,setName] = useState('')
+  const [cardno,setCardno] = useState('')
+  const [cvv,setCvv] = useState('')
+  const[address,setAddress] = useState('')
+  const[upI,setUpI] = useState('');
+  let isallfilled
+
+  if(formm==="card"){
+    isallfilled = name && cardno  && cvv && address;
+  }
+
+  if(formm==="upi"){
+    isallfilled = upi && address;
+  }
+
+  if(formm==="cash"){
+    isallfilled = address && true;
+  }
+  
+  
 
   const isrequired = () => {
     let count = 0;
@@ -145,6 +165,8 @@ const Cart = () => {
                 <input type="text" name="" id="" className='border-b-2 rounded-md text-gray-700 px-2 py-0.5' placeholder='NAME ON CARD'
                 maxLength={50}
                 autoFocus
+                value={name}
+                onChange={() => setName(e.target.value)}
                 />
               </div>
 
@@ -153,6 +175,8 @@ const Cart = () => {
                 <input type="text" name="" id="" className='border-b-2 rounded-md text-gray-700 px-1 py-0.5 ' placeholder='1234 1234 1234 1234'
                 autoFocus
                 maxLength={19}
+                value={cardno}
+                onChange={() => setCardno(e.target.value)}
                   onInput={(e) => {
                     let value = e.target.value.replace(/\D/g, '').slice(0, 16); // Keep digits only
                     value = value.match(/.{1,4}/g)?.join(' ') ?? '';
@@ -207,7 +231,9 @@ const Cart = () => {
 
                 <div className='flex flex-col  justify-center items-center'>
                   <h1 className='grid justify-self-start w-[30%]'>CVV:</h1>
-                  <input type="password" placeholder='123' className='border-b-2 rounded-md text-gray-700 w-[30%] px-1 py-0.5' maxLength="3" />
+                  <input type="password" placeholder='123' className='border-b-2 rounded-md text-gray-700 w-[30%] px-1 py-0.5' maxLength="3" 
+                  value={cvv}
+                onChange={() => setCvv(e.target.value)}/>
                 </div>
                 
               </div>
@@ -218,6 +244,8 @@ const Cart = () => {
                 <input type="text" name="" id="" className='border-b-2 rounded-md text-gray-700 px-2 py-0.5' placeholder='FULL ADDRESS' 
                 maxLength={100}
                 autoFocus
+                value={address}
+                onChange={() => setAddress(e.target.value)}
                 />
               
 
@@ -230,6 +258,8 @@ const Cart = () => {
                 <input type="text" name="" id="" className='border-b-2 rounded-md text-gray-700 px-2 py-0.5' placeholder='eg.abcd@okicici'
                 maxLength={50}
                 autoFocus
+                value={upI}
+                onChange={() => setUpI(e.target.value)}
                 />
               </div>
 
@@ -238,6 +268,8 @@ const Cart = () => {
                 <input type="text" name="" id="" className='border-b-2 rounded-md text-gray-700 px-2 py-0.5' placeholder='FULL ADDRESS' 
                 maxLength={100}
                 autoFocus
+                value={address}
+                onChange={() => setAddress(e.target.value)}
                 />
               
 
@@ -258,6 +290,8 @@ const Cart = () => {
                 <input type="text" name="" id="" className='border-b-2 rounded-md text-gray-700 px-2 py-0.5' placeholder='FULL ADDRESS' 
                 maxLength={100}
                 autoFocus
+                value={address}
+                onChange={() => setAddress(e.target.value)}
                 />
               
 
@@ -289,7 +323,10 @@ const Cart = () => {
 <Link to="/orderplaced">
           <div className='justify-center items-center flex xl:pt-10 pt-20 '>
             
-            <button className='bg-coral-red font-montserrat text-white text-3xl w-[100%] py-2 rounded-2xl font-semibold hover:scale-103 hover:font-bold transition-all cursor-pointer '>Check Out</button>
+            <button className='bg-coral-red font-montserrat text-white text-3xl w-[100%] py-2 rounded-2xl font-semibold hover:scale-103 hover:font-bold transition-all cursor-pointer '
+           
+            disabled={!isallfilled}
+            >Check Out</button>
             
           </div>
 </Link>
