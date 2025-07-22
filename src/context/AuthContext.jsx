@@ -58,14 +58,17 @@ export const AuthProvider = ({children}) => {
                 
             }
         } catch (error) {
-            console.log(error);
-             if (error?.message?.includes('Password')) {
-      alert('❗ Password must be at least 8 characters and not commonly used.');
-    } else if (error?.message?.includes('already exists')) {
-      alert('❗ This email is already registered.');
-    } else {
-      alert(`❗ ${error.message}`);
-    }
+            console.error("Registration Error:", error);
+
+  const errorMsg = error?.response?.message || error?.message || "Something went wrong.";
+
+  if (errorMsg.includes('Password')) {
+    alert('❗ Password must be at least 8 characters and not commonly used.');
+  } else if (errorMsg.includes('already exists')) {
+    alert('❗ This email is already registered.');
+  } else {
+    alert(`❗ ${errorMsg}`);
+  }
         }
         setLoading(false)
 
