@@ -14,6 +14,7 @@ const Cart = () => {
   const[address,setAddress] = useState('')
   const[upI,setUpI] = useState('');
   let isallfilled
+  const [showMessage, setShowMessage] = useState(false);
 
   if(formm==="card"){
     isallfilled = name && cardno  && cvv && address;
@@ -40,7 +41,7 @@ const Cart = () => {
   
   
   return (
-    <section className='w-full h-screen   padding-x'>
+    <section className='w-full   padding-x'>
       <div className='flex xl:flex-row flex-col pt-17 gap-5 max-w-[1470px] mx-auto my-0'>
         <div className='flex flex-col flex-[1.5]'>
           <h1 className='font-bold text-3xl '>Shopping Cart</h1>
@@ -320,16 +321,38 @@ const Cart = () => {
 
 
 
-<Link to="/orderplaced">
-          <div className='justify-center items-center flex xl:pt-10 pt-20 '>
-            
-            <button className='bg-coral-red font-montserrat text-white text-3xl w-[100%] py-2 rounded-2xl font-semibold hover:scale-103 hover:font-bold transition-all cursor-pointer '
-           
-            disabled={!isallfilled}
-            >Check Out</button>
-            
-          </div>
-</Link>
+<div className='justify-center items-center flex xl:pt-10 pt-20'>
+  {isallfilled ? (
+    // ✅ If valid, allow navigation
+    <Link to="/orderplaced" className="w-full">
+      <button
+        className='bg-coral-red font-montserrat text-white text-3xl w-full py-2 rounded-2xl font-semibold hover:scale-103 hover:font-bold transition-all cursor-pointer'
+      >
+        Check Out
+      </button>
+    </Link>
+  ) : (
+    // ❌ If invalid, show alert
+    <button
+      className='bg-gray-400 text-white text-3xl w-full py-2 rounded-2xl font-semibold cursor-not-allowed'
+      onClick={() => {
+        setShowMessage(true);
+        setTimeout(() => {
+          setShowMessage(false);
+        }, 2000);
+      }}
+    >
+      Check Out
+    </button>
+  )}
+
+  {/* Message box below */}
+  {showMessage && (
+    <div className="text-red-600 text-lg font-semibold mt-2">
+      ⚠️ Please enter all the details...
+    </div>
+  )}
+</div>
         </div>
 
       </div>
