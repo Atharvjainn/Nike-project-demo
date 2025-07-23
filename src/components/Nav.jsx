@@ -108,11 +108,12 @@ const Nav = () => {
             <img src={close} alt="" width={40} height={40}
             onClick={() => setHamburgerr(false)} />
           </div>
-            <ul className='flex flex-col gap-8 mt-40 mb-20 text-center px-5' >
+            <ul className='flex flex-col gap-8 mt-20 mb-20 text-center px-5' >
           {navLinks.map((navlink) => (
               <li key={navlink.label}>
                 <a 
                 href={navlink.href}
+                onClick={() => handleScrollLink(navlink.href)}
                 className='font-montserrat leading-normal text-xl text-white
                 hover:text-black hover:font-semibold
                 hover:border-b-2'

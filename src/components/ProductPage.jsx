@@ -6,6 +6,10 @@ import { cart } from '../assets/icons';
 import { useCart } from '../context/CartContext';
 import { productswithslug } from '../components/PopularProductcard';
 import { useLocation } from 'react-router';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 
 const ProductPage = () => {
     const { slug } = useParams();
@@ -46,7 +50,26 @@ const ProductPage = () => {
                 
 
               </div>
-                <img src={currentimage} alt="" className='w-full object-contain h-auto rounded-3xl 3xl:max-w-[480px] ' />
+                  <div className='w-full object-contain h-auto rounded-3xl 3xl:max-w-[480px] 3xl:hidden '>
+              <Swiper
+        modules={[Pagination]}
+        pagination={{ clickable: true }}
+        spaceBetween={30}
+        slidesPerView={1}
+        loop={true}
+      >
+        {[images.image1, images.image2, images.image3, images.image4, images.image5].map((src, index) => (
+          <SwiperSlide key={index}>
+            <img
+              src={src}
+              alt={`Slide ${index}`}
+              className='w-full object-contain h-auto rounded-3xl 3xl:max-w-[480px] '
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      </div>
+                <img src={currentimage} alt="" className='w-full object-contain h-auto rounded-3xl 3xl:max-w-[480px] 3xl:flex hidden' />
                 </div>
             <div className='right flex flex-1 flex-col pt-10 '>
 
